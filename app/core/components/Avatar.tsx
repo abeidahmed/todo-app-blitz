@@ -4,7 +4,7 @@ type AvatarProps = {
   size?: number
 }
 
-const Avatar: React.FC<AvatarProps> = ({ userName, userAvatar, size = 7 }) => {
+const Avatar = ({ userName, userAvatar, size = 7 }: AvatarProps) => {
   let avatarSize: string = `w-${size} h-${size}`
 
   if (userAvatar) {
