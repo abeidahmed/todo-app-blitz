@@ -1,6 +1,6 @@
 -- CreateTable
 CREATE TABLE "User" (
-    "id" SERIAL NOT NULL,
+    "id" TEXT NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
     "name" TEXT,
@@ -13,7 +13,7 @@ CREATE TABLE "User" (
 
 -- CreateTable
 CREATE TABLE "Session" (
-    "id" SERIAL NOT NULL,
+    "id" TEXT NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
     "expiresAt" TIMESTAMP(3),
@@ -22,21 +22,21 @@ CREATE TABLE "Session" (
     "antiCSRFToken" TEXT,
     "publicData" TEXT,
     "privateData" TEXT,
-    "userId" INTEGER,
+    "userId" TEXT,
 
     PRIMARY KEY ("id")
 );
 
 -- CreateTable
 CREATE TABLE "Token" (
-    "id" SERIAL NOT NULL,
+    "id" TEXT NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
     "hashedToken" TEXT NOT NULL,
     "type" TEXT NOT NULL,
     "expiresAt" TIMESTAMP(3) NOT NULL,
     "sentTo" TEXT NOT NULL,
-    "userId" INTEGER NOT NULL,
+    "userId" TEXT NOT NULL,
 
     PRIMARY KEY ("id")
 );
