@@ -1,7 +1,9 @@
 import { ReactNode, useState } from "react"
 import { Head } from "blitz"
+import ModalStore from "app/core/stores/modal"
 import Header from "app/application/components/Header"
 import Sidebar from "app/application/components/Sidebar"
+import ModalRoot from "app/core/components/ModalRoot"
 
 type ApplicationLayoutProps = {
   title?: string
@@ -18,11 +20,15 @@ const ApplicationLayout = ({ title, children }: ApplicationLayoutProps) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <Header toggleSidebar={() => setIsActive(!isActive)} />
-      <div className="flex">
-        <Sidebar sidebarActive={isActive} />
-        <main className="flex-1">{children}</main>
-      </div>
+      <ModalStore>
+        <ModalRoot />
+        <Header toggleSidebar={() => setIsActive(!isActive)} />
+        <div className="flex">
+          <Sidebar sidebarActive={isActive} />
+          <main className="flex-1">{children}</main>
+        </div>
+        <div id="modal-root"></div>
+      </ModalStore>
     </>
   )
 }
