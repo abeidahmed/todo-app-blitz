@@ -3,8 +3,9 @@ import { useMutation, useRouter, Link, useSession } from "blitz"
 import * as Icon from "react-feather"
 import logout from "app/auth/mutations/logout"
 import Avatar from "app/core/components/Avatar"
+import Toggler from "app/core/components/Toggler"
 
-const HeaderMenu = () => {
+const HeaderMenu = ({ isActive }: { isActive: boolean }) => {
   const { name, email } = useSession()
   const [logoutMutation] = useMutation(logout)
   const router = useRouter()
@@ -15,7 +16,11 @@ const HeaderMenu = () => {
   }
 
   return (
-    <div className="absolute origin-top-right right-0 mt-1 bg-white w-72 rounded border shadow">
+    <div
+      className={`${
+        !isActive && "hidden"
+      } absolute origin-top-right right-0 mt-1 bg-white w-72 rounded border shadow`}
+    >
       <ul className="py-1">
         <li>
           <a
@@ -92,16 +97,20 @@ const Header = () => {
           </Link>
         </div>
         <div>
-          <div className="relative">
-            <div className="flex items-center">
-              <button type="button">
-                <Avatar userName="Abeid Ahmed" />
-              </button>
-            </div>
-            <Suspense fallback="Loading...">
-              <HeaderMenu />
-            </Suspense>
-          </div>
+          <Toggler>
+            {(isActive, setIsActive) => (
+              <div className="relative">
+                <div className="flex items-center">
+                  <button type="button" onClick={() => setIsActive(!isActive)}>
+                    <Avatar userName="Abeid Ahmed" />
+                  </button>
+                </div>
+                <Suspense fallback="Loading...">
+                  <HeaderMenu isActive={isActive} />
+                </Suspense>
+              </div>
+            )}
+          </Toggler>
         </div>
       </div>
     </header>
