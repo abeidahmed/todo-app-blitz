@@ -2,6 +2,23 @@ import { Link } from "blitz"
 import * as Feather from "react-feather"
 import Icon from "app/core/components/Icon"
 
+const ProjectList = () => {
+  return (
+    <li className="flex items-center justify-between hover:bg-gray-200 rounded transition duration-150 ease-in-out">
+      <a
+        href="#"
+        className="flex items-center flex-1 min-w-0 py-2 pl-3 space-x-3 text-left rounded-l leading-5 text-gray-700 hover:no-underline"
+      >
+        <span className="block p-1 rounded-full" style={{ backgroundColor: "red" }}></span>
+        <span className="leading-5 truncate">Agriculture</span>
+      </a>
+      <button type="button" className="text-gray-500 rounded-r px-3 py-2 hover:text-gray-900">
+        <Feather.MoreHorizontal strokeWidth={1} size={20} />
+      </button>
+    </li>
+  )
+}
+
 type SidebarProps = {
   sidebarActive: boolean
 }
@@ -60,6 +77,11 @@ const Sidebar = ({ sidebarActive }: SidebarProps) => {
                 <Feather.Plus strokeWidth={1} size={20} />
               </button>
             </div>
+            <ul className="space-y-1 mt-1">
+              <ProjectList />
+              <ProjectList />
+              <ProjectList />
+            </ul>
           </div>
         </nav>
       </aside>
