@@ -1,6 +1,7 @@
 import { Link } from "blitz"
 import * as Feather from "react-feather"
 import Icon from "app/core/components/Icon"
+import { useModal } from "app/core/hooks/useModal"
 
 const ProjectList = () => {
   return (
@@ -24,12 +25,14 @@ type SidebarProps = {
 }
 
 const Sidebar = ({ sidebarActive }: SidebarProps) => {
+  const { showModal, types } = useModal()
+
   return (
     <>
       <div
         className={`${
           !sidebarActive && "hidden"
-        } absolute inset-x-0 bottom-0 top-11 bg-gray-900 bg-opacity-50 lg:hidden`}
+        } absolute inset-x-0 bottom-0 top-11 bg-black bg-opacity-50 lg:hidden`}
       />
       <aside
         className={`${
@@ -73,6 +76,11 @@ const Sidebar = ({ sidebarActive }: SidebarProps) => {
               <button
                 type="button"
                 className="text-gray-500 rounded-r px-3 py-2 hover:text-gray-900"
+                onClick={() =>
+                  showModal({
+                    modalType: types.PROJECT_FORM_MODAL,
+                  })
+                }
               >
                 <Feather.Plus strokeWidth={1} size={20} />
               </button>
