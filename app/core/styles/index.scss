@@ -1,3 +1,28 @@
 @import "tailwindcss/base";
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
+
+@layer base {
+  a {
+    @apply text-brand;
+
+    &:hover {
+      @apply underline;
+    }
+  }
+
+  button,
+  [role="button"],
+  input[type="submit"] {
+    @apply transition duration-150 ease-in-out cursor-pointer;
+
+    &:disabled,
+    &[disabled] {
+      @apply opacity-50 pointer-events-none cursor-default;
+    }
+
+    &:focus:not([data-focus-visible-added]) {
+      @apply outline-none;
+    }
+  }
+}
