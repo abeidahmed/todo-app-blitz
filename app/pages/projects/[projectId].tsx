@@ -6,7 +6,7 @@ import deleteProject from "app/application/projects/mutations/deleteProject"
 
 export const Project = () => {
   const router = useRouter()
-  const projectId = useParam("projectId", "number")
+  const projectId = useParam("projectId", "string")
   const [deleteProjectMutation] = useMutation(deleteProject)
   const [project] = useQuery(getProject, { id: projectId })
 

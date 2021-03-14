@@ -5,6 +5,7 @@ import * as z from "zod"
 const CreateProject = z
   .object({
     name: z.string(),
+    color: z.string(),
   })
   .nonstrict()
 

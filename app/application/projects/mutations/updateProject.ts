@@ -4,8 +4,9 @@ import * as z from "zod"
 
 const UpdateProject = z
   .object({
-    id: z.number(),
+    id: z.string(),
     name: z.string(),
+    color: z.string(),
   })
   .nonstrict()
 

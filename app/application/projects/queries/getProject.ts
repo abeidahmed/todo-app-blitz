@@ -4,7 +4,7 @@ import * as z from "zod"
 
 const GetProject = z.object({
   // This accepts type of undefined, but is required at runtime
-  id: z.number().optional().refine(Boolean, "Required"),
+  id: z.string().optional().refine(Boolean, "Required"),
 })
 
 export default resolver.pipe(resolver.zod(GetProject), resolver.authorize(), async ({ id }) => {
