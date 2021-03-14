@@ -1,9 +1,15 @@
-// tailwind.config.js
 module.exports = {
   purge: ["{app,pages}/**/*.{js,jsx,ts,tsx}"],
   darkMode: false,
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        brand: {
+          DEFAULT: "#db4c3f",
+          600: "#c53727",
+        },
+      },
+    },
   },
   variants: {
     extend: {},
