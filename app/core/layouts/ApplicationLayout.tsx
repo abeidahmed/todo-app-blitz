@@ -1,5 +1,6 @@
 import { ReactNode } from "react"
 import { Head } from "blitz"
+import Header from "app/application/components/Header"
 
 type ApplicationLayoutProps = {
   title?: string
@@ -14,6 +15,7 @@ const ApplicationLayout = ({ title, children }: ApplicationLayoutProps) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
+      <Header />
       {children}
     </>
   )
