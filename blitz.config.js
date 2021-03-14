@@ -1,6 +1,10 @@
 const { sessionMiddleware, simpleRolesIsAuthorized } = require("blitz")
+const path = require("path")
 
 module.exports = {
+  sassOptions: {
+    includePaths: [path.join(__dirname, "app", "styles")],
+  },
   middleware: [
     sessionMiddleware({
       isAuthorized: simpleRolesIsAuthorized,

@@ -10,7 +10,7 @@ import { ErrorBoundary } from "react-error-boundary"
 import { queryCache } from "react-query"
 import LoginForm from "app/auth/components/LoginForm"
 
-import "app/core/styles/index.css"
+import "app/core/styles/index.scss"
 
 export default function App({ Component, pageProps }: AppProps) {
   const getLayout = Component.getLayout || ((page) => page)
