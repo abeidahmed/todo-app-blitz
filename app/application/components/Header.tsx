@@ -79,7 +79,11 @@ const HeaderMenu = ({ isActive }: { isActive: boolean }) => {
   )
 }
 
-const Header = () => {
+type HeaderProps = {
+  toggleSidebar: () => void
+}
+
+const Header = ({ toggleSidebar }: HeaderProps) => {
   return (
     <header className="bg-brand px-4 sm:px-6 lg:px-10">
       <div className="flex items-center justify-between h-11">
@@ -87,6 +91,7 @@ const Header = () => {
           <button
             type="button"
             className="-ml-1 p-1 rounded hover:bg-white hover:bg-opacity-25 text-white lg:hidden"
+            onClick={toggleSidebar}
           >
             <Icon.Menu size={20} strokeWidth={1} />
           </button>

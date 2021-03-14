@@ -1,6 +1,7 @@
-import { ReactNode } from "react"
+import { ReactNode, useState } from "react"
 import { Head } from "blitz"
 import Header from "app/application/components/Header"
+import Sidebar from "app/application/components/Sidebar"
 
 type ApplicationLayoutProps = {
   title?: string
@@ -8,6 +9,8 @@ type ApplicationLayoutProps = {
 }
 
 const ApplicationLayout = ({ title, children }: ApplicationLayoutProps) => {
+  const [isActive, setIsActive] = useState(false)
+
   return (
     <>
       <Head>
@@ -15,8 +18,11 @@ const ApplicationLayout = ({ title, children }: ApplicationLayoutProps) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <Header />
-      {children}
+      <Header toggleSidebar={() => setIsActive(!isActive)} />
+      <div className="flex">
+        <Sidebar sidebarActive={isActive} />
+        <main className="flex-1">{children}</main>
+      </div>
     </>
   )
 }
