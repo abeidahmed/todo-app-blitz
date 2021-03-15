@@ -1,22 +1,37 @@
-import { Link } from "blitz"
+import { Suspense } from "react"
+import { Link, usePaginatedQuery } from "blitz"
+import getProjects from "app/application/projects/queries/getProjects"
 import * as Feather from "react-feather"
 import Icon from "app/core/components/Icon"
 import { useModal } from "app/core/hooks/useModal"
 
 const ProjectList = () => {
+  const [{ projects }] = usePaginatedQuery(getProjects, {
+    orderBy: { name: "asc" },
+  })
+
   return (
-    <li className="flex items-center justify-between hover:bg-gray-200 rounded transition duration-150 ease-in-out">
-      <a
-        href="#"
-        className="flex items-center flex-1 min-w-0 py-2 pl-3 space-x-3 text-left rounded-l leading-5 text-gray-700 hover:no-underline"
-      >
-        <span className="block p-1 rounded-full" style={{ backgroundColor: "red" }}></span>
-        <span className="leading-5 truncate">Agriculture</span>
-      </a>
-      <button type="button" className="text-gray-500 rounded-r px-3 py-2 hover:text-gray-900">
-        <Feather.MoreHorizontal strokeWidth={1} size={20} />
-      </button>
-    </li>
+    <ul className="space-y-1 mt-1">
+      {projects.map((project) => (
+        <li
+          key={project.id}
+          className="flex items-center justify-between hover:bg-gray-200 rounded transition duration-150 ease-in-out"
+        >
+          <Link href={`/app/projects/${project.id}`}>
+            <a className="flex items-center flex-1 min-w-0 py-2 pl-3 space-x-3 text-left rounded-l leading-5 text-gray-700 hover:no-underline">
+              <span
+                className="block p-1 rounded-full"
+                style={{ backgroundColor: project.color }}
+              ></span>
+              <span className="leading-5 truncate">{project.name}</span>
+            </a>
+          </Link>
+          <button type="button" className="text-gray-500 rounded-r px-3 py-2 hover:text-gray-900">
+            <Feather.MoreHorizontal strokeWidth={1} size={20} />
+          </button>
+        </li>
+      ))}
+    </ul>
   )
 }
 
@@ -85,11 +100,9 @@ const Sidebar = ({ sidebarActive }: SidebarProps) => {
                 <Feather.Plus strokeWidth={1} size={20} />
               </button>
             </div>
-            <ul className="space-y-1 mt-1">
+            <Suspense fallback="Loading...">
               <ProjectList />
-              <ProjectList />
-              <ProjectList />
-            </ul>
+            </Suspense>
           </div>
         </nav>
       </aside>
