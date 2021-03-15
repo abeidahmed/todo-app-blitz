@@ -11,6 +11,10 @@
     }
   }
 
+  label {
+    @apply font-semibold;
+  }
+
   button,
   [role="button"],
   input[type="submit"] {
@@ -23,6 +27,24 @@
 
     &:focus:not([data-focus-visible-added]) {
       @apply outline-none;
+    }
+  }
+}
+
+@layer components {
+  .btn {
+    @apply py-1.5 px-3 leading-5 text-sm font-semibold text-gray-700 rounded border border-gray-300 bg-gray-50;
+
+    &:hover {
+      @apply bg-gray-100;
+    }
+  }
+
+  .btn-primary {
+    @apply bg-brand border-brand-600 text-white;
+
+    &:hover {
+      @apply bg-brand-600;
     }
   }
 }
