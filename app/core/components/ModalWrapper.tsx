@@ -1,3 +1,4 @@
+import clsx from "clsx"
 import OutsideClickHandler from "react-outside-click-handler"
 import * as Feather from "react-feather"
 import { useModal } from "app/core/hooks/useModal"
@@ -25,9 +26,15 @@ type ModalWrapperType = {
   children: JSX.Element | JSX.Element[]
   closeOnOutsideClick?: boolean
   modalTitle?: string
+  size?: "md" | "lg"
 }
 
-const ModalWrapper = ({ children, modalTitle, closeOnOutsideClick = true }: ModalWrapperType) => {
+const ModalWrapper = ({
+  children,
+  modalTitle,
+  size = "lg",
+  closeOnOutsideClick = true,
+}: ModalWrapperType) => {
   const { hideModal } = useModal()
 
   let actionFunction: () => void
@@ -38,6 +45,14 @@ const ModalWrapper = ({ children, modalTitle, closeOnOutsideClick = true }: Moda
     actionFunction = () => {}
   }
 
+  const modalWrapperClass = clsx(
+    "inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-20 sm:align-top w-full",
+    {
+      "sm:max-w-md": size === "md",
+      "sm:max-w-lg": size === "lg",
+    }
+  )
+
   return (
     <div className="fixed z-10 inset-0 overflow-y-auto">
       <div className="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
@@ -45,7 +60,7 @@ const ModalWrapper = ({ children, modalTitle, closeOnOutsideClick = true }: Moda
           <div className="absolute inset-0 bg-black opacity-50" />
         </div>
         <span className="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true" />
-        <div className="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-20 sm:align-top sm:max-w-lg w-full">
+        <div className={modalWrapperClass}>
           <OutsideClickHandler onOutsideClick={actionFunction}>
             <div className="bg-white">
               <ModalHeader modalTitle={modalTitle} />

@@ -11,7 +11,7 @@ const ProjectFormModal = () => {
   const { hideModal } = useModal()
 
   return (
-    <ModalWrapper modalTitle="Add project">
+    <ModalWrapper modalTitle="Add project" size="md">
       <Form
         schema={CreateProject}
         initialValues={{ name: "", color: "" }}
