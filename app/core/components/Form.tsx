@@ -4,9 +4,7 @@ import * as z from "zod"
 
 export interface FormProps<S extends z.ZodType<any, any>>
   extends Omit<PropsWithoutRef<JSX.IntrinsicElements["form"]>, "onSubmit"> {
-  /** All your form fields */
   children?: ReactNode
-  /** Text to display in the submit button */
   submitText?: string
   schema?: S
   onSubmit: (values: z.infer<S>) => Promise<void | OnSubmitResult>
@@ -58,7 +56,7 @@ export function Form<S extends z.ZodType<any, any>>({
           {children}
 
           {formError && (
-            <div role="alert" style={{ color: "red" }}>
+            <div role="alert" className="text-brand-600 font-semibold mt-1">
               {formError}
             </div>
           )}
@@ -68,12 +66,6 @@ export function Form<S extends z.ZodType<any, any>>({
               {submitText}
             </button>
           )}
-
-          <style global jsx>{`
-            .form > * + * {
-              margin-top: 1rem;
-            }
-          `}</style>
         </form>
       )}
     </Formik>

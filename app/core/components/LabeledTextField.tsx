@@ -2,11 +2,8 @@ import { forwardRef, PropsWithoutRef } from "react"
 import { useField, useFormikContext, ErrorMessage } from "formik"
 
 export interface LabeledTextFieldProps extends PropsWithoutRef<JSX.IntrinsicElements["input"]> {
-  /** Field name. */
   name: string
-  /** Field label. */
   label: string
-  /** Field type. Doesn't include radio buttons and checkboxes */
   type?: "text" | "password" | "email" | "number"
   outerProps?: PropsWithoutRef<JSX.IntrinsicElements["div"]>
 }
@@ -20,33 +17,22 @@ export const LabeledTextField = forwardRef<HTMLInputElement, LabeledTextFieldPro
       <div {...outerProps}>
         <label>
           {label}
-          <input {...input} disabled={isSubmitting} {...props} ref={ref} />
+          <input
+            {...input}
+            disabled={isSubmitting}
+            {...props}
+            ref={ref}
+            className="mt-1 py-1.5 px-3 text-sm rounded block w-full leading-5 border-gray-300 focus:ring-gray-400 focus:border-gray-400"
+          />
         </label>
 
         <ErrorMessage name={name}>
           {(msg) => (
-            <div role="alert" style={{ color: "red" }}>
+            <div role="alert" className="font-semibold text-brand-600 mt-1">
               {msg}
             </div>
           )}
         </ErrorMessage>
-
-        <style jsx>{`
-          label {
-            display: flex;
-            flex-direction: column;
-            align-items: start;
-            font-size: 1rem;
-          }
-          input {
-            font-size: 1rem;
-            padding: 0.25rem 0.5rem;
-            border-radius: 3px;
-            border: 1px solid purple;
-            appearance: none;
-            margin-top: 0.5rem;
-          }
-        `}</style>
       </div>
     )
   }
