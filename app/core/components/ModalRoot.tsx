@@ -1,6 +1,7 @@
 import ReactDOM from "react-dom"
 import { useModal } from "app/core/hooks/useModal"
 import ProjectFormModal from "app/application/projects/components/ProjectFormModal"
+import { Suspense } from "react"
 
 export const types = {
   PROJECT_FORM_MODAL: "PROJECT_FORM_MODAL",
@@ -17,7 +18,9 @@ const ModalRoot = () => {
 
   const SpecificModal = MODAL_COMPONENTS[modalType]
   return ReactDOM.createPortal(
-    <SpecificModal {...modalProps} />,
+    <Suspense fallback="loading...">
+      <SpecificModal {...modalProps} />
+    </Suspense>,
     document.getElementById("modal-root")
   )
 }
