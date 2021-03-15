@@ -27,8 +27,8 @@ const ProjectFormModal = () => {
         }}
         className="space-y-4"
       >
-        <LabeledTextField name="name" label="Name" placeholder="Name" type="text" />
-        <LabeledTextField name="color" label="Color" placeholder="Color" type="text" />
+        <LabeledTextField name="name" label="Name" type="text" />
+        <LabeledTextField name="color" label="Color" type="text" maxLength={7} />
         <div className="py-3 flex items-center justify-end space-x-3 border-t">
           <button type="button" className="btn">
             Cancel
