@@ -1,6 +1,6 @@
 @layer components {
   .dropdown {
-    @apply mt-1 z-10 absolute left-0 origin-top-right w-64 bg-white rounded border shadow;
+    @apply mt-1 z-10 absolute right-0 origin-top-right w-64 bg-white rounded border shadow;
   }
 
   .dropdown-menu {

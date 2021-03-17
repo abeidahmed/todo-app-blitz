@@ -38,7 +38,11 @@ const ProjectList = () => {
                   >
                     <Feather.MoreHorizontal strokeWidth={1} size={20} />
                   </button>
-                  <div className={`${!isActive && "hidden"} dropdown origin-top-left`}>
+                  <div
+                    className={`${
+                      !isActive && "hidden"
+                    } dropdown md:origin-top-left md:left-0 md:right-auto`}
+                  >
                     <ul className="py-1">
                       <li>
                         <button type="button" className="dropdown-menu">

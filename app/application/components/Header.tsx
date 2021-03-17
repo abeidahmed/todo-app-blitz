@@ -16,7 +16,7 @@ const HeaderMenu = ({ isActive }: { isActive: boolean }) => {
   }
 
   return (
-    <div className={`${!isActive && "hidden"} dropdown w-72 right-0 left-auto`}>
+    <div className={`${!isActive && "hidden"} dropdown w-72`}>
       <ul className="py-1">
         <li>
           <a
