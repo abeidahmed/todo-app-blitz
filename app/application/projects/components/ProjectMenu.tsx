@@ -3,9 +3,10 @@ import { useModal } from "app/core/hooks/useModal"
 
 type ProjectMenuProps = {
   isActive: boolean
+  projectId: string | number
 }
 
-const ProjectMenu = ({ isActive }: ProjectMenuProps) => {
+const ProjectMenu = ({ isActive, projectId }: ProjectMenuProps) => {
   const { showModal, types } = useModal()
 
   return (
@@ -17,9 +18,9 @@ const ProjectMenu = ({ isActive }: ProjectMenuProps) => {
             className="dropdown-menu"
             onClick={() => {
               showModal({
-                modalType: types.PROJECT_FORM_MODAL,
+                modalType: types.PROJECT_UPDATE_MODAL,
                 modalProps: {
-                  id: 1,
+                  projectId,
                 },
               })
             }}

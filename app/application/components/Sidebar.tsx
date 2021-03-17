@@ -39,7 +39,7 @@ const ProjectList = () => {
                   >
                     <Feather.MoreHorizontal strokeWidth={1} size={20} />
                   </button>
-                  <ProjectMenu isActive={isActive} />
+                  <ProjectMenu isActive={isActive} projectId={project.id} />
                 </>
               )}
             </Toggler>
@@ -108,7 +108,7 @@ const Sidebar = ({ sidebarActive }: SidebarProps) => {
                 className="text-gray-500 rounded-r px-3 py-2 hover:text-gray-900"
                 onClick={() =>
                   showModal({
-                    modalType: types.PROJECT_FORM_MODAL,
+                    modalType: types.PROJECT_CREATE_MODAL,
                   })
                 }
               >
