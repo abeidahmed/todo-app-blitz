@@ -20,10 +20,10 @@ export const FORM_ERROR = "FORM_ERROR"
 
 export function Form<S extends z.ZodType<any, any>>({
   children,
-  submitText,
   schema,
   initialValues,
   onSubmit,
+  submitText,
   ...props
 }: FormProps<S>) {
   const [formError, setFormError] = useState<string | null>(null)
@@ -50,7 +50,7 @@ export function Form<S extends z.ZodType<any, any>>({
         }
       }}
     >
-      {({ handleSubmit, isSubmitting }) => (
+      {({ handleSubmit }) => (
         <form onSubmit={handleSubmit} className="form" {...props}>
           {/* Form fields supplied as children are rendered here */}
           {children}
@@ -59,12 +59,6 @@ export function Form<S extends z.ZodType<any, any>>({
             <div role="alert" className="text-brand-600 font-semibold mt-1">
               {formError}
             </div>
-          )}
-
-          {submitText && (
-            <button type="submit" disabled={isSubmitting}>
-              {submitText}
-            </button>
           )}
         </form>
       )}

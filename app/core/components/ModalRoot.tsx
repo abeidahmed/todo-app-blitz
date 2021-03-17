@@ -1,6 +1,6 @@
 import ReactDOM from "react-dom"
 import { useModal } from "app/core/hooks/useModal"
-import ProjectFormModal from "app/application/projects/components/ProjectFormModal"
+import ProjectCreateModal from "app/application/projects/modals/ProjectCreateModal"
 import { Suspense } from "react"
 
 export const types = {
@@ -8,7 +8,7 @@ export const types = {
 }
 
 const MODAL_COMPONENTS = {
-  [types.PROJECT_FORM_MODAL]: ProjectFormModal,
+  [types.PROJECT_FORM_MODAL]: ProjectCreateModal,
 }
 
 const ModalRoot = () => {

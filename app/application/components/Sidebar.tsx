@@ -5,6 +5,7 @@ import getProjects from "app/application/projects/queries/getProjects"
 import Icon from "app/core/components/Icon"
 import { useModal } from "app/core/hooks/useModal"
 import Toggler from "app/core/components/Toggler"
+import ProjectMenu from "../projects/components/ProjectMenu"
 
 const ProjectList = () => {
   const [{ projects }] = usePaginatedQuery(getProjects, {
@@ -38,29 +39,7 @@ const ProjectList = () => {
                   >
                     <Feather.MoreHorizontal strokeWidth={1} size={20} />
                   </button>
-                  <div
-                    className={`${
-                      !isActive && "hidden"
-                    } dropdown md:origin-top-left md:left-0 md:right-auto`}
-                  >
-                    <ul className="py-1">
-                      <li>
-                        <button type="button" className="dropdown-menu">
-                          <Feather.Edit3 strokeWidth={1} size={20} />
-                          <span className="leading-5">Edit project</span>
-                        </button>
-                      </li>
-                      <li>
-                        <hr className="my-1" />
-                      </li>
-                      <li>
-                        <button type="button" className="dropdown-menu dropdown-menu-danger">
-                          <Feather.Trash2 strokeWidth={1} size={20} />
-                          <span className="leading-5">Delete project</span>
-                        </button>
-                      </li>
-                    </ul>
-                  </div>
+                  <ProjectMenu isActive={isActive} />
                 </>
               )}
             </Toggler>
