@@ -38,17 +38,10 @@ const ProjectList = () => {
                   >
                     <Feather.MoreHorizontal strokeWidth={1} size={20} />
                   </button>
-                  <div
-                    className={`${
-                      !isActive && "hidden"
-                    } mt-1 z-10 absolute left-0 origin-top-left w-64 bg-white rounded border shadow`}
-                  >
+                  <div className={`${!isActive && "hidden"} dropdown origin-top-left`}>
                     <ul className="py-1">
                       <li>
-                        <button
-                          type="button"
-                          className="flex items-center w-full text-left space-x-2 py-2 px-3 hover:bg-gray-100 text-gray-700 hover:no-underline"
-                        >
+                        <button type="button" className="dropdown-menu">
                           <Feather.Edit3 strokeWidth={1} size={20} />
                           <span className="leading-5">Edit project</span>
                         </button>
@@ -57,10 +50,7 @@ const ProjectList = () => {
                         <hr className="my-1" />
                       </li>
                       <li>
-                        <button
-                          type="button"
-                          className="flex items-center w-full text-left space-x-2 py-2 px-3 hover:bg-gray-100 text-gray-700 hover:text-brand-600 hover:no-underline"
-                        >
+                        <button type="button" className="dropdown-menu dropdown-menu-danger">
                           <Feather.Trash2 strokeWidth={1} size={20} />
                           <span className="leading-5">Delete project</span>
                         </button>

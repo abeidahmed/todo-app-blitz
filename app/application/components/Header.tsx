@@ -16,11 +16,7 @@ const HeaderMenu = ({ isActive }: { isActive: boolean }) => {
   }
 
   return (
-    <div
-      className={`${
-        !isActive && "hidden"
-      } absolute origin-top-right right-0 mt-1 bg-white w-72 rounded border shadow`}
-    >
+    <div className={`${!isActive && "hidden"} dropdown w-72 right-0 left-auto`}>
       <ul className="py-1">
         <li>
           <a
@@ -44,19 +40,13 @@ const HeaderMenu = ({ isActive }: { isActive: boolean }) => {
           <hr className="my-1" />
         </li>
         <li>
-          <a
-            href="#"
-            className="flex items-center space-x-2 py-2 px-3 hover:bg-gray-100 text-gray-700 hover:no-underline"
-          >
+          <a href="#" className="dropdown-menu">
             <Icon.Box strokeWidth={1} size={20} />
             <span className="leading-5">Theme</span>
           </a>
         </li>
         <li>
-          <a
-            href="#"
-            className="flex items-center space-x-2 py-2 px-3 hover:bg-gray-100 text-gray-700 hover:no-underline"
-          >
+          <a href="#" className="dropdown-menu">
             <Icon.Activity strokeWidth={1} size={20} />
             <span className="leading-5">Activity log</span>
           </a>
@@ -65,11 +55,7 @@ const HeaderMenu = ({ isActive }: { isActive: boolean }) => {
           <hr className="my-1" />
         </li>
         <li>
-          <button
-            type="button"
-            onClick={handleLogout}
-            className="flex w-full text-left items-center space-x-2 py-2 px-3 hover:bg-gray-100 text-gray-700 hover:no-underline"
-          >
+          <button type="button" className="dropdown-menu" onClick={handleLogout}>
             <Icon.LogOut strokeWidth={1} size={20} />
             <span className="leading-5">Log out</span>
           </button>

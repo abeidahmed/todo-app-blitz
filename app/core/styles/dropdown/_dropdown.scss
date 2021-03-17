@@ -1,0 +1,17 @@
+@layer components {
+  .dropdown {
+    @apply mt-1 z-10 absolute left-0 origin-top-right w-64 bg-white rounded border shadow;
+  }
+
+  .dropdown-menu {
+    @apply flex items-center w-full text-left space-x-2 py-2 px-3 text-gray-700;
+
+    &:hover {
+      @apply text-gray-700 no-underline bg-gray-100;
+    }
+  }
+
+  .dropdown-menu-danger:hover {
+    @apply text-brand-600;
+  }
+}

@@ -2,6 +2,9 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
+// custom components
+@import "dropdown/index";
+
 @layer base {
   a {
     @apply text-brand;
