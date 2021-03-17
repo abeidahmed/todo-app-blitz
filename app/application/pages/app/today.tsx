@@ -6,8 +6,6 @@ const TodayPage: BlitzPage = () => {
 }
 
 TodayPage.authenticate = true
-TodayPage.getLayout = (page) => (
-  <ApplicationLayout title={"Create New Project"}>{page}</ApplicationLayout>
-)
+TodayPage.getLayout = (page) => <ApplicationLayout title="Today's todo">{page}</ApplicationLayout>
 
 export default TodayPage
