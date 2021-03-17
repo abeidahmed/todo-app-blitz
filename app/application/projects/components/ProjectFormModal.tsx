@@ -1,9 +1,10 @@
-import { useMutation } from "blitz"
+import { useMutation, invalidateQuery } from "blitz"
 import { Form, FORM_ERROR } from "app/core/components/Form"
 import { LabeledTextField } from "app/core/components/LabeledTextField"
 import ModalWrapper from "app/core/components/ModalWrapper"
 import { CreateProject } from "app/application/projects/validations"
 import createProject from "app/application/projects/mutations/createProject"
+import getProjects from "app/application/projects/queries/getProjects"
 import { useModal } from "app/core/hooks/useModal"
 
 const ProjectFormModal = () => {
@@ -19,6 +20,7 @@ const ProjectFormModal = () => {
           try {
             await createProjectMutation(values)
             hideModal()
+            invalidateQuery(getProjects)
           } catch (error) {
             return {
               [FORM_ERROR]: error.toString(),
