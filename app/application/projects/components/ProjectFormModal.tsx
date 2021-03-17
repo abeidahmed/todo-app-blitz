@@ -1,4 +1,4 @@
-import { useMutation, invalidateQuery } from "blitz"
+import { useMutation, invalidateQuery, useRouter } from "blitz"
 import { Form, FORM_ERROR } from "app/core/components/Form"
 import { LabeledTextField } from "app/core/components/LabeledTextField"
 import ModalWrapper from "app/core/components/ModalWrapper"
@@ -9,6 +9,7 @@ import { useModal } from "app/core/hooks/useModal"
 
 const ProjectFormModal = () => {
   const [createProjectMutation] = useMutation(createProject)
+  const router = useRouter()
   const { hideModal } = useModal()
 
   return (
@@ -18,8 +19,9 @@ const ProjectFormModal = () => {
         initialValues={{ name: "", color: "" }}
         onSubmit={async (values) => {
           try {
-            await createProjectMutation(values)
+            const project = await createProjectMutation(values)
             hideModal()
+            router.push(`/app/projects/${project.id}`)
             invalidateQuery(getProjects)
           } catch (error) {
             return {
