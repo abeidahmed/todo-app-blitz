@@ -1,9 +1,14 @@
+import { useMutation, useRouter, invalidateQuery } from "blitz"
 import * as Feather from "react-feather"
+import deleteProject from "app/application/projects/mutations/deleteProject"
+import getProjects from "app/application/projects/queries/getProjects"
 import { useModal } from "app/core/hooks/useModal"
 import ModalWrapper from "app/core/components/ModalWrapper"
 
 const ProjectDeleteModal = () => {
-  const { hideModal } = useModal()
+  const router = useRouter()
+  const { hideModal, modalProps } = useModal()
+  const [deleteProjectMutation] = useMutation(deleteProject)
 
   return (
     <ModalWrapper size="md" hasFooter>
@@ -16,7 +21,18 @@ const ProjectDeleteModal = () => {
         <button type="button" onClick={() => hideModal()} className="btn">
           Cancel
         </button>
-        <button type="submit" className="btn btn-primary">
+        <button
+          type="button"
+          className="btn btn-primary"
+          onClick={async () => {
+            await deleteProjectMutation({ id: modalProps.projectId })
+            hideModal()
+            if (router.params.projectId === modalProps.projectId) {
+              router.push("/app/today")
+            }
+            invalidateQuery(getProjects)
+          }}
+        >
           Delete
         </button>
       </div>
