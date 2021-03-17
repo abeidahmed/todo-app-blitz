@@ -1,9 +1,10 @@
 import { Suspense } from "react"
 import { Link, usePaginatedQuery } from "blitz"
-import getProjects from "app/application/projects/queries/getProjects"
 import * as Feather from "react-feather"
+import getProjects from "app/application/projects/queries/getProjects"
 import Icon from "app/core/components/Icon"
 import { useModal } from "app/core/hooks/useModal"
+import Toggler from "app/core/components/Toggler"
 
 const ProjectList = () => {
   const [{ projects }] = usePaginatedQuery(getProjects, {
@@ -26,9 +27,50 @@ const ProjectList = () => {
               <span className="leading-5 truncate">{project.name}</span>
             </a>
           </Link>
-          <button type="button" className="text-gray-500 rounded-r px-3 py-2 hover:text-gray-900">
-            <Feather.MoreHorizontal strokeWidth={1} size={20} />
-          </button>
+          <div className="relative">
+            <Toggler>
+              {(isActive, setIsActive) => (
+                <>
+                  <button
+                    type="button"
+                    className="text-gray-500 rounded-r px-3 py-2 hover:text-gray-900"
+                    onClick={() => setIsActive(!isActive)}
+                  >
+                    <Feather.MoreHorizontal strokeWidth={1} size={20} />
+                  </button>
+                  <div
+                    className={`${
+                      !isActive && "hidden"
+                    } mt-1 z-10 absolute left-0 origin-top-left w-64 bg-white rounded border shadow`}
+                  >
+                    <ul className="py-1">
+                      <li>
+                        <button
+                          type="button"
+                          className="flex items-center w-full text-left space-x-2 py-2 px-3 hover:bg-gray-100 text-gray-700 hover:no-underline"
+                        >
+                          <Feather.Edit3 strokeWidth={1} size={20} />
+                          <span className="leading-5">Edit project</span>
+                        </button>
+                      </li>
+                      <li>
+                        <hr className="my-1" />
+                      </li>
+                      <li>
+                        <button
+                          type="button"
+                          className="flex items-center w-full text-left space-x-2 py-2 px-3 hover:bg-gray-100 text-gray-700 hover:text-brand-600 hover:no-underline"
+                        >
+                          <Feather.Trash2 strokeWidth={1} size={20} />
+                          <span className="leading-5">Delete project</span>
+                        </button>
+                      </li>
+                    </ul>
+                  </div>
+                </>
+              )}
+            </Toggler>
+          </div>
         </li>
       ))}
     </ul>
