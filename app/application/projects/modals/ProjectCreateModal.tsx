@@ -1,7 +1,7 @@
 import { useMutation, invalidateQuery, useRouter } from "blitz"
 import { FORM_ERROR } from "app/core/components/Form"
 import ModalWrapper from "app/core/components/ModalWrapper"
-import { CreateProject } from "app/application/projects/validations"
+import { projectValidation } from "app/application/projects/validations"
 import createProject from "app/application/projects/mutations/createProject"
 import getProjects from "app/application/projects/queries/getProjects"
 import { useModal } from "app/core/hooks/useModal"
@@ -16,7 +16,7 @@ const ProjectCreateModal = () => {
     <ModalWrapper modalTitle="Add project" size="md">
       <ProjectForm
         submitText="Add"
-        schema={CreateProject}
+        schema={projectValidation}
         initialValues={{ name: "", color: "" }}
         onSubmit={async (values) => {
           try {

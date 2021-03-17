@@ -9,7 +9,6 @@ const DeleteProject = z
   .nonstrict()
 
 export default resolver.pipe(resolver.zod(DeleteProject), resolver.authorize(), async ({ id }) => {
-  // TODO: in multi-tenant app, you must add validation to ensure correct tenant
   const project = await db.project.deleteMany({ where: { id } })
 
   return project

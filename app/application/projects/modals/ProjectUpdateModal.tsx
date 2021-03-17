@@ -4,7 +4,7 @@ import ModalWrapper from "app/core/components/ModalWrapper"
 import getProjects from "app/application/projects/queries/getProjects"
 import getProject from "app/application/projects/queries/getProject"
 import updateProject from "app/application/projects/mutations/updateProject"
-import { UpdateProject } from "app/application/projects/validations"
+import { projectValidation } from "app/application/projects/validations"
 import { useModal } from "app/core/hooks/useModal"
 import { ProjectForm } from "app/application/projects/components/ProjectForm"
 
@@ -17,7 +17,7 @@ const ProjectUpdateModal = () => {
     <ModalWrapper modalTitle="Edit project" size="md">
       <ProjectForm
         submitText="Save"
-        schema={UpdateProject}
+        schema={projectValidation}
         initialValues={project}
         onSubmit={async (values) => {
           try {
