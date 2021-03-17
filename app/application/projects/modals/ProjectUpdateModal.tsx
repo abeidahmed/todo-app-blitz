@@ -14,7 +14,7 @@ const ProjectUpdateModal = () => {
   const [updateProjectMutation] = useMutation(updateProject)
 
   return (
-    <ModalWrapper modalTitle="Edit project" size="md">
+    <ModalWrapper modalTitle="Edit project" size="md" hasFooter>
       <ProjectForm
         submitText="Save"
         schema={projectValidation}

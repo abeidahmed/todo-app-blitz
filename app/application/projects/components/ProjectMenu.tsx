@@ -33,7 +33,18 @@ const ProjectMenu = ({ isActive, projectId }: ProjectMenuProps) => {
           <hr className="my-1" />
         </li>
         <li>
-          <button type="button" className="dropdown-menu dropdown-menu-danger">
+          <button
+            type="button"
+            className="dropdown-menu dropdown-menu-danger"
+            onClick={() => {
+              showModal({
+                modalType: types.PROJECT_DELETE_MODAL,
+                modalProps: {
+                  projectId,
+                },
+              })
+            }}
+          >
             <Feather.Trash2 strokeWidth={1} size={20} />
             <span className="leading-5">Delete project</span>
           </button>

@@ -27,12 +27,14 @@ type ModalWrapperType = {
   closeOnOutsideClick?: boolean
   modalTitle?: string
   size?: "md" | "lg"
+  hasFooter?: boolean
 }
 
 const ModalWrapper = ({
   children,
   modalTitle,
   size = "lg",
+  hasFooter = false,
   closeOnOutsideClick = true,
 }: ModalWrapperType) => {
   const { hideModal } = useModal()
@@ -53,6 +55,11 @@ const ModalWrapper = ({
     }
   )
 
+  const modalBodyClass = clsx("px-4 sm:px-6", {
+    "py-4 sm:py-4": !hasFooter,
+    "pt-4 sm:pt-4": hasFooter,
+  })
+
   return (
     <div className="fixed z-10 inset-0 overflow-y-auto">
       <div className="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
@@ -64,7 +71,7 @@ const ModalWrapper = ({
           <OutsideClickHandler onOutsideClick={actionFunction}>
             <div className="bg-white">
               <ModalHeader modalTitle={modalTitle} />
-              <div className="px-4 pt-4 sm:px-6 sm:pt-6">{children}</div>
+              <div className={modalBodyClass}>{children}</div>
             </div>
           </OutsideClickHandler>
         </div>

@@ -13,7 +13,7 @@ const ProjectCreateModal = () => {
   const { hideModal } = useModal()
 
   return (
-    <ModalWrapper modalTitle="Add project" size="md">
+    <ModalWrapper modalTitle="Add project" size="md" hasFooter>
       <ProjectForm
         submitText="Add"
         schema={projectValidation}

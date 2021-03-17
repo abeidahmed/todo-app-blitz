@@ -12,7 +12,7 @@ export function ProjectForm<S extends z.ZodType<any, any>>(props: FormProps<S>) 
       <LabeledTextField name="name" label="Name" placeholder="Name" autoComplete="off" />
       <LabeledTextField name="color" label="Color" placeholder="Color" autoComplete="off" />
       <hr className="-mx-4 sm:-mx-6" />
-      <div className="py-3 flex items-center justify-end space-x-3">
+      <div className="pb-3 flex items-center justify-end space-x-3">
         <button type="button" onClick={() => hideModal()} className="btn">
           Cancel
         </button>
